@@ -15,9 +15,9 @@ def index():
 @app.route("/castles/<castle_src>")
 def castles(castle_src):
     castles_list = CastleDB().get_castles()
-    castle = get_castle(castle_src)
+    castle = CastleDB().get_castle(castle_src)
     return render_template("castles.html", castles=castles_list, castle=castle)
 
 
 if __name__ == "__main__":
-    app.run(host="192.168.58.2", debug=True)
+    app.run(host="192.168.1.132", debug=True)
