@@ -57,7 +57,36 @@ class CastleDB:
         self.con.commit()
         self.con.close()
 
+    def create_table_images(self):
+        self.con = sqlite3.connect("castles.db")
+        self.cur = self.con.cursor()
+
+        self.cur.execute("""CREATE TABLE IF NOT EXISTS images (id INTEGER, pic_count INTEGER)""")
+
+        self.con.commit()
+        self.con.close()
+
+    def get_castle_images(self, id):
+        self.con = sqlite3.connect("castles.db")
+        self.cur = self.con.cursor()
+
+        images = self.cur.execute("""SELECT * FROM images WHERE id=?""", (id,)).fetchone()
+
+        self.con.commit()
+        self.con.close()
+        return images
+
+    def get_castle_text(self, id):
+        self.con = sqlite3.connect("castles.db")
+        self.cur = self.con.cursor()
+
+        text = self.cur.execute("""SELECT * FROM main WHERE id=?""", (id,)).fetchall()
+
+        self.con.commit()
+        self.con.close()
+        return text
+
 
 if __name__ == "__main__":
     castle = CastleDB()
-    castle.create_table_main()
+    castle.create_table_images()

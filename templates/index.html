@@ -45,7 +45,7 @@
             {% for castle in castles %}
             <article>
                 <h2>{{ castle[1] }}</h2>
-                <img src="{{ url_for('static', filename=castle[2]) }}" class="preview">
+                <img src="{{ url_for('static', filename=castle[1] + '/' + castle[2]) }}" class="preview">
                 <p>
                     {{ castle[3] }}
                 </p>

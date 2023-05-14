@@ -16,7 +16,10 @@ def index():
 def castles(castle_src):
     castles_list = CastleDB().get_castles()
     castle = CastleDB().get_castle(castle_src)
-    return render_template("castles.html", castles=castles_list, castle=castle)
+    castle_text = CastleDB().get_castle_text(castle[0])
+    castle_images = CastleDB().get_castle_images(castle[0])
+    return render_template("castles.html", castles=castles_list, castle_text=castle_text, castle_images=castle_images,
+                           length=len(castle_text))
 
 
 if __name__ == "__main__":
